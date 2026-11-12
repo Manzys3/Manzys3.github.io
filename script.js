@@ -1,3 +1,12 @@
+//In this file, Description of program is at the top.
+//The actual code is below the comment. A comment between 
+//programs mean that the program have changed. 
+//So don't mix them togheter. 
+
+
+
+
+
 // Number guessing game
 
 import readlineSync, { question } from 'readline-sync';
@@ -102,3 +111,106 @@ constructor(distanceToTarget) {
 }
 new TorM1(26)
 
+//The program creates five people with randomly selected names and birth years. 
+//It prints each person’s introduction, shows the ages of the first and last people, and logs the full list of people.
+
+const arvoLuku = (minLuku, maxLuku) => //generates an integer
+
+ Math.floor(Math.random() * (maxLuku + 1 - minLuku)) + minLuku;
+
+const etunimet = [
+
+ 'Anneli',
+
+ 'Pekka',
+
+ 'Irmeli',
+
+ 'Kalervo',
+
+ 'Aulikki',
+
+ 'Jarkko',
+
+ 'Kaarina',
+
+ 'Reino',
+
+];
+
+const sukunimet = [
+
+ 'Auvinen',
+
+ 'Pekkanen',
+
+ 'Immonen',
+
+ 'Kankainen',
+
+ 'Pennanen',
+
+ 'Ruuskanen',
+
+ 'van der Vaart',
+
+];
+
+const ihmiset = [];
+
+
+class Ihminen {
+
+ constructor(etunimi, sukunimi, syntymavuosi){
+
+ this.etunimi = etunimi;
+
+ this.sukunimi = sukunimi;
+
+ this.syntymavuosi = syntymavuosi;
+
+ }
+
+ esittaydy() { //Prints one person's introduction. This is called five times.
+
+ console.log(`Nimeni on ${this.sukunimi}, ${this.etunimi} ${this.sukunimi}`);
+
+}
+
+kerroIka() { //Subtracts the person's birth year from the current year to get their age.
+
+ const ika = new Date().getFullYear() - this.syntymavuosi;
+
+ console.log(`Olen ${ika}-vuotias`);
+
+}
+
+}
+
+for(let i = 0; i < 5; i++){
+
+const ihminen = new Ihminen (
+
+ etunimet[arvoLuku(0, etunimet.length - 1)], //Randomly selects a name from index 0 to the last name.
+
+sukunimet[arvoLuku(0, sukunimet.length - 1)],
+
+arvoLuku(1970, 2020) //Generates a random number between 1970 and 2020.
+
+);
+
+ihmiset.push(ihminen)
+
+}
+
+for (const ihminen of ihmiset) { //Goes through the people and asks each one to introduce themselves.
+
+ ihminen.esittaydy();
+
+}
+
+ihmiset[0].kerroIka(); //Prints the first person's age.
+
+ihmiset[ihmiset.length - 1].kerroIka();//Prints the last person's age.
+
+console.log(ihmiset)
